@@ -1,0 +1,27 @@
+Data:
+  preprocess_root: "../data/processed_dataset/DatasetJSON/"
+  train_vocab_file: "../data/processed_dataset/train_external_function_name_vocab.jsonl"
+  max_vocab_size: 10000         # modify according to the result of 1BuildExternalVocab.py
+Training:
+  cuda: True                    # enable GPU training if cuda is available
+  dist_backend: "nccl"          # if using torch.distribution, the backend to be used
+  dist_port: "1234"
+  max_epoches: 10
+  train_batch_size: 16
+  test_batch_size: 32
+  seed: 19920208
+  only_test_path: 'None'
+Model:
+  ablation_models: "Full"       # "Full"
+  gnn_type: "GraphSAGE"         # "GraphSAGE" / "GCN"
+  pool_type: "global_max_pool"  # "global_max_pool" / "global_mean_pool"
+  acfg_node_init_dims: 11
+  cfg_filters: "200-200"
+  fcg_filters: "200-200"
+  number_classes: 1
+  drapout_rate: 0.2
+Optimizer:
+  name: "AdamW"                 # Adam / AdamW
+  learning_rate: 1e-3           # initial learning rate
+  weight_decay: 1e-5            # initial weight decay
+  learning_anneal: 1.1          # Annealing applied to learning rate after each epoch
